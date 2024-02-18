@@ -1,0 +1,4 @@
+The idea of this software is a ticket manager for reporting bugs in
+software that works behind the terminal, saving and ordering the tickets.
+
+This software was created by Joaquín Gómez.
