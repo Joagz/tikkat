@@ -1,4 +1,67 @@
-The idea of this software is a ticket manager for reporting bugs in
-software that works behind the terminal, saving and ordering the tickets.
+Defining tikkat commands:
 
-This software was created by Joaquín Gómez.
+	tik [option] [args:values]
+	
+		options:
+			
+			* project  
+				- new
+					+ project name
+					? description (--desc)
+				- delete
+					+ project id
+				- list
+					? verbose (--verbose or -v)
+			
+			* branch
+				- new
+					+ branch name
+					? description (--desc)
+				- delete
+					+ branch name / id
+				- list
+					? verbose (--verbose or -v)
+			
+			* switch [project_name]
+				-- Inside project: switch [branch_name]
+					-- new [name] [description] [?priority (0: low, 1: high) ] (new ticket)
+					-- list (list tickets)
+					-- back (go back to project)
+				-- back (go back to main)
+			
+
+Examples:
+
+	tik project new "project_1" --desc "this is an example project"
+		out: 	project_1	ASB390SM	"this is an example project"
+	tik project list -v
+	tik project delete "ASB390SM"
+	
+	tik branch new "branch_1" --desc "doing network here"
+		out:	branch_1	JO39JDMN	"doing network here"
+	tik branch list -v
+	tik branch delete "branch_1" / tik branch delete "JO39JDMN"
+
+	tik switch "project_1"
+		tik switch "branch_1"
+			tik new -n "Error in this file" -d "this error is very weird, I must solve it" -p 1 
+				out:	Error in this file	NSD9D3JL	position: 0 (pos. in chain)
+			
+	[ Tickets work as a chain, if you run 'tik mark --completed' without arguments, the first argument will
+	be completed and then will pass to the next object in the chain, else, you can provide a name or id]
+			
+			tik mark --completed [? id/name]
+			tik mark --pending [? id/name] (marks last completed as uncomplete)
+			
+			[Shorthands]
+			
+			tik mark -c [? id/name]
+			tik mark -p [? id/name]
+					 
+		tik back
+	tik back
+	
+	
+	
+	
+
