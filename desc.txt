@@ -1,4 +1,4 @@
-Defining tikkat commands:
+efining tikkat commands:
 
 	tik [option] [args:values]
 	
